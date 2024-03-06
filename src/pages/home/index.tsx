@@ -1,3 +1,6 @@
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
+import Social from "../../components/Social";
+
 const Home = () => {
   return (
     <div className="flex flex-col w-full py-4 items-center justify-center">
@@ -9,22 +12,22 @@ const Home = () => {
       <main className="flex flex-col w-11/12 max-w-xl text-center">
         <section className="bg-white mb-4 w-full py-2 rounded-lg select-none transition-transform hover:scale-105 cursor-pointer">
           <a>
-            <p className="text-base md:text-lg">
-              Canal do Youtube
-            </p>
+            <p className="text-base md:text-lg">Canal do Youtube</p>
           </a>
         </section>
 
         <footer className="flex justify-center gap-3 my-4 ">
-
+          <Social url="https://facebook.com/kaykyjsx">
+            <FaFacebook size={35} color="#FFF" />
+          </Social>
+          <Social url="https://www.youtube.com/channel/UC4GvOjfuHxMPtpnCeqoJcEg">
+            <FaYoutube size={35} color="#FFF" />
+          </Social>
+          <Social url="https://instagram.com/kayky.tsx">
+            <FaInstagram size={35} color="#FFF" />
+          </Social>
         </footer>
-        
       </main>
-
-
-
-
-
     </div>
   );
 };
