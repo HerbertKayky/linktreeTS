@@ -4,25 +4,23 @@ import Login from "./pages/login";
 import Admin from "./pages/admin";
 import Networks from "./pages/networks";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>
+    element: <Home />,
   },
   {
     path: "/login",
-    element: <Login/>
+    element: <Login />,
   },
   {
     path: "/admin",
-    element: <Admin/>
+    element: <Admin />,
   },
   {
     path: "/admin/social",
-    element: <Networks/>
+    element: <Networks />,
   },
+]);
 
-])
-
-export {router}
+export { router };
