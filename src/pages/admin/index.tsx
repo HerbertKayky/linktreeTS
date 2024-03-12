@@ -1,10 +1,11 @@
+import Header from "../../components/Header";
 
 const Admin = () => {
-    return (
-      <div>
-          <h1>Admin</h1>
-      </div>
-    )
-  }
-  
-  export default Admin
+  return (
+    <div className="flex items-center flex-col min-h-screen pb-7 px-2">
+      <Header />
+    </div>
+  );
+};
+
+export default Admin;
