@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Input from "../../components/Input";
 import { FiTrash } from "react-icons/fi";
@@ -13,11 +13,44 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+interface LinkProps {
+  id: string;
+  name: string;
+  url: string;
+  bg: string;
+  color: string;
+}
+
 const Admin = () => {
   const [nameInput, setNameInput] = useState("");
   const [urlInput, setUrlInput] = useState("");
   const [textColorInput, setTextColorInput] = useState("#f1f1f1");
   const [backgroundColorInput, setBackgroundColorInput] = useState("#121212");
+  const [links, setLinks] = useState<LinkProps[]>([]);
+
+  useEffect(() => {
+    const linksRef = collection(db, "links");
+    const queryRef = query(linksRef, orderBy("created", "asc"));
+
+    const unsub = onSnapshot(queryRef, (snapshot) => {
+      const lista = [] as LinkProps[];
+
+      snapshot.forEach((doc) => {
+        lista.push({
+          id: doc.id,
+          name: doc.data().name,
+          url: doc.data().url,
+          bg: doc.data().bg,
+          color: doc.data().color,
+        });
+      });
+      setLinks(lista);
+    });
+
+    return () => {
+      unsub();
+    };
+  }, []);
 
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
@@ -39,7 +72,7 @@ const Admin = () => {
         setUrlInput("");
         console.log("SUCESSO AO CADASTRAR!");
       })
-      .catch((error) => {
+      .catch(() => {
         console.log("ERRO AO CADASTRAR NO BANCO");
       });
   };
@@ -91,7 +124,7 @@ const Admin = () => {
         {nameInput !== "" && (
           <div className="flex items-center justify-center flex-col mb-7 p-1 border-gray-100/25 border rounded-md">
             <label className="text-white font-medium mt-2 mb-3">
-              Veja como está ficando:{" "}
+              Veja como está ficando:
             </label>
             <article
               className="w-11/12 max-w-lg flex flex-col items-center justify-between bg-zinc-900 rounded px-1 py-3"
