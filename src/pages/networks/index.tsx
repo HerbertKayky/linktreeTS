@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Input from "../../components/Input";
 
 import { db } from "../../services/firebaseConnection";
-import {doc,setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const Networks = () => {
   const [facebook, setFacebook] = useState("");
@@ -11,35 +11,34 @@ const Networks = () => {
   const [youtube, setYoutube] = useState("");
 
   useEffect(() => {
-    function loadLinks(){
-      const docRef = doc(db, "social", "link")
+    function loadLinks() {
+      const docRef = doc(db, "social", "link");
       getDoc(docRef)
       .then((snapshot) => {
-        if(snapshot.data() !== undefined) {
-          setFacebook(snapshot.data()?.facebook)
-          setInstagram(snapshot.data()?.instagram)
-          setYoutube(snapshot.data()?.youtube)
+        if (snapshot.data() !== undefined) {
+          setFacebook(snapshot.data()?.facebook);
+          setInstagram(snapshot.data()?.instagram);
+          setYoutube(snapshot.data()?.youtube);
         }
-      })
+      });
     }
-    loadLinks()
-  },[])
+    loadLinks();
+  }, []);
 
-  const handleRegister = (e:FormEvent) => {
-    e.preventDefault()
-    setDoc(doc(db, "social","link"), {
+  const handleRegister = (e: FormEvent) => {
+    e.preventDefault();
+    setDoc(doc(db, "social", "link"), {
       facebook: facebook,
       instagram: instagram,
-      youtube: youtube
+      youtube: youtube,
     })
-    .then(()=> {
-      console.log("cadastrado com sucesso")
-    })
-    .catch((error)=> {
-      console.log("erro ao salvar", error)
-    })
-  }
-
+      .then(() => {
+        console.log("cadastrado com sucesso");
+      })
+      .catch((error) => {
+        console.log("erro ao salvar", error);
+      });
+  };
 
   return (
     <div className="flex items-center flex-col min-h-screen pb-7 px-2">
