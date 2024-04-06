@@ -92,18 +92,17 @@ const Home = () => {
 
         {socialLinks && Object.keys(socialLinks).length > 0 && (
           <footer className="flex justify-center gap-3 my-4 ">
-          <Social url={socialLinks?.facebook}>
-            <FaFacebook size={35} color="#FFF" />
-          </Social>
-          <Social url={socialLinks?.youtube}>
-            <FaYoutube size={35} color="#FFF" />
-          </Social>
-          <Social url={socialLinks?.instagram}>
-            <FaInstagram size={35} color="#FFF" />
-          </Social>
-        </footer>
+            <Social url={socialLinks?.facebook}>
+              <FaFacebook size={35} color="#FFF" />
+            </Social>
+            <Social url={socialLinks?.youtube}>
+              <FaYoutube size={35} color="#FFF" />
+            </Social>
+            <Social url={socialLinks?.instagram}>
+              <FaInstagram size={35} color="#FFF" />
+            </Social>
+          </footer>
         )}
-        
       </main>
     </div>
   );
